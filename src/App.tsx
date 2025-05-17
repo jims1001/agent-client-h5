@@ -1,12 +1,32 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import './styles/index.scss'
+import { io } from "socket.io-client";
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  useEffect(()=>{
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      const client = new io("http://localhost:10000/im/agent");
+      client.on("connect", () => {
+          console.log("Connected:", client.id);
+      });
 
+      client.on("message", (data : any) => {
+          console.log("Received message:", data);
+      });
+
+
+      client.emit("message", "Hello from client!");
+
+
+  },[])
   return (
     <>
       <div>
