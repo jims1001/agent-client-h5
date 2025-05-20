@@ -9,6 +9,8 @@ import React from 'react'
 window.isInitSocket = false;
 window.isReadySocket = false;
 
+
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
