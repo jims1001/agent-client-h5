@@ -1,32 +1,32 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import React from 'react'
+
 import './App.css'
 import './styles/index.scss'
-import { io } from "socket.io-client";
-
-
-
+import { useTrigger} from "@/api/useRequest";
+import {useSocket} from "@/service/useSocket";
 
 function App() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
+    const {trigger} = useTrigger<{sessionId : string}>("http://localhost:8082/auth")
+    const {trigger : socketTrigger} = useSocket()
+    const isInitRef = useRef(false);
   useEffect(()=>{
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      const client = new io("http://localhost:10000/im/agent");
-      client.on("connect", () => {
-          console.log("Connected:", client.id);
-      });
+      if (window.isInitSocket) {
+          return
+      }
 
-      client.on("message", (data : any) => {
-          console.log("Received message:", data);
-      });
+      window.isInitSocket = true;
 
-
-      client.emit("message", "Hello from client!");
-
-
-  },[])
+      isInitRef.current = true;
+      console.log('app launched successfully.')
+      trigger().then(res=>{
+          console.log('res', res)
+          socketTrigger(res.sessionId)
+      })
+  },[socketTrigger, trigger])
   return (
     <>
       <div>
