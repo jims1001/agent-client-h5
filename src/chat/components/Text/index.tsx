@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import clsx from 'clsx';
 
 export interface TextProps {
@@ -7,6 +7,7 @@ export interface TextProps {
   align?: 'left' | 'center' | 'right' | 'justify';
   breakWord?: boolean;
   truncate?: boolean | number;
+  children? : ReactNode;
 }
 
 export const Text: React.FC<TextProps> = (props) => {

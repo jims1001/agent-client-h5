@@ -36,6 +36,7 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
     completed = false,
     disabled = false,
     status,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     index,
     title,
     subTitle,

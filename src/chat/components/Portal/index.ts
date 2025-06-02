@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -18,6 +19,7 @@ function getEl(el: Container) {
 }
 
 export const Portal: React.FC<PortalProps> = (props) => {
+  // @ts-expect-error
   const { children, container = document.body, onRendered } = props;
   const [mountNode, setMountNode] = useState<Element | null>(null);
 

@@ -6,16 +6,10 @@ export function mountComponent(Comp: React.ReactElement, root = document.body) {
   root.appendChild(div);
 
   const Clone = React.cloneElement(Comp, {
-    onUnmount() {
-      if (div) {
-        ReactDOM.unmountComponentAtNode(div);
-        if (div.parentNode) {
-          div.parentNode.removeChild(div);
-        }
-      }
-    },
   });
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   ReactDOM.render(Clone, div);
 
   return div;

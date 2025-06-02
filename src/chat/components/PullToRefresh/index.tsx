@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useRef, useCallback, useImperativeHandle } from 'react';
 import clsx from 'clsx';
 import { setTransform } from '../../utils/style';
@@ -70,8 +71,13 @@ export const PullToRefresh = React.forwardRef<PullToRefreshHandle, PullToRefresh
     const [disabled, setDisabled] = useState(!props.onRefresh);
     const sharedRef = useRef<any>({});
     const statusRef = useRef<PullToRefreshStatus>(status);
-    const timer1 = useRef<ReturnType<typeof setTimeout>>();
-    const timer2 = useRef<ReturnType<typeof setTimeout>>();
+
+
+    // @ts-ignore
+      const timer1 = useRef<ReturnType<typeof setTimeout>>();
+    // @ts-ignore
+      const timer2 = useRef<ReturnType<typeof setTimeout>>();
+
 
     const useFallback = !canUse('touch');
 

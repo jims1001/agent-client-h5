@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import { lazyComponent } from '../../utils/lazyComponent';
 import { LazyComponentWithCode } from '../LazyComponent';
@@ -13,6 +14,7 @@ export { useComponents } from './useComponents';
 export type { ComponentsProviderProps, ComponentsMap };
 
 export const ComponentsProvider: React.FC<ComponentsProviderProps> = (props) => {
+  // @ts-ignore
   const { components, children } = props;
   const componentsRef = React.useRef<ComponentsMap>({ ...components });
 

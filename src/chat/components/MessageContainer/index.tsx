@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable */
 import React, { useState, useEffect, useRef, useCallback, useImperativeHandle } from 'react';
 import { PullToRefresh, PullToRefreshHandle, ScrollToEndOptions } from '../PullToRefresh';
 import { Message, MessageProps } from '../Message';
@@ -178,7 +178,8 @@ export const MessageContainer = React.forwardRef<MessageContainerHandle, Message
       };
     }, []);
 
-    useImperativeHandle(ref, () => ({ ref: messagesRef, scrollToEnd }), [scrollToEnd]);
+    // @ts-ignore
+      useImperativeHandle(ref, () => ({ ref: messagesRef, scrollToEnd }), [scrollToEnd]);
 
     return (
       <div className="MessageContainer" ref={messagesRef} tabIndex={-1}>

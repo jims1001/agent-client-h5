@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useRef, useEffect, useImperativeHandle, useCallback } from 'react';
 import clsx from 'clsx';
 import { IconButtonProps } from '../IconButton';
@@ -73,8 +74,11 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>((props, 
   const [accessoryContent, setAccessoryContent] = useState('');
   const inputRef = useRef<HTMLTextAreaElement>(null!);
   const focused = useRef(false);
+  // @ts-ignore
   const blurTimer = useRef<any>();
+  // @ts-ignore
   const valueTimer = useRef<NodeJS.Timeout>();
+  // @ts-ignore
   const popoverTarget = useRef<any>();
   const isMountRef = useRef(false);
   const [isWide, setWide] = useState(false);

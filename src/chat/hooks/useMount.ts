@@ -3,13 +3,15 @@ import { reflow } from '../utils';
 
 interface UseMountOptions {
   active?: boolean;
-  ref: React.RefObject<any>;
+  ref: React.RefObject<never>;
   delay?: number;
 }
 
 function useMount({ active = false, ref, delay = 300 }: UseMountOptions) {
   const [isShow, setIsShow] = useState(false);
   const [didMount, setDidMount] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const timeout = useRef<ReturnType<typeof setTimeout>>();
 
   const clear = () => {

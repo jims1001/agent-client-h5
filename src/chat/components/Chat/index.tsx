@@ -254,16 +254,14 @@ export const Chat = React.forwardRef<HTMLDivElement, ChatProps>((props, ref) => 
           onBackBottomClick={onBackBottomClick}
         />
         <div className="ChatFooter">
-          {renderQuickReplies ? (
-            renderQuickReplies()
-          ) : (
-            <QuickReplies
-              items={quickReplies}
-              visible={quickRepliesVisible}
-              onClick={onQuickReplyClick}
-              onScroll={onQuickReplyScroll}
-            />
-          )}
+
+            {!renderQuickReplies &&    <QuickReplies
+                items={quickReplies}
+                visible={quickRepliesVisible}
+                onClick={onQuickReplyClick}
+                onScroll={onQuickReplyScroll}
+            />}
+
           <Composer
             wideBreakpoint={wideBreakpoint}
             ref={composerRef}

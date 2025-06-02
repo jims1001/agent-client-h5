@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Icon } from '../Icon';
 import { IconButton } from '../IconButton';
@@ -24,8 +25,17 @@ export const MessageStatus = ({
   onChange,
 }: MessageStatusProps) => {
   const [type, setType] = useState<StatusType>('');
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const loadingTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+
   const failTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const autoTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   function clear() {

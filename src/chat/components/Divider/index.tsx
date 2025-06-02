@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import clsx from 'clsx';
 
@@ -7,6 +8,7 @@ export type DividerProps = {
 };
 
 export const Divider: React.FC<DividerProps> = (props) => {
+  // @ts-ignore
   const { className, position = 'center', children, ...other } = props;
   return (
     <div

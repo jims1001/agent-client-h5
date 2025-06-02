@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import clsx from 'clsx';
 
 export type CardTextProps = {
   className?: string;
+  children?: ReactNode;
 };
 
 export const CardText: React.FC<CardTextProps> = (props) => {

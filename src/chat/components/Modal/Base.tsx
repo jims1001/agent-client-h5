@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, {ReactNode, useEffect, useRef} from 'react';
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import useMount from '../../hooks/useMount';
@@ -28,6 +28,7 @@ export type ModalProps = {
   avatar?: string;
   onClose?: () => void;
   onBackdropClick?: () => void;
+  children:ReactNode;
 };
 
 function clearModal() {
@@ -63,6 +64,8 @@ export const Base: React.FC<ModalProps> = (props) => {
   const configCtx = useConfig();
 
   const wrapper = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const { didMount, isShow } = useMount({ active, ref: wrapper });
 
   useEffect(() => {

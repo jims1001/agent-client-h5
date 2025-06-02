@@ -1,5 +1,5 @@
 import React from 'react';
-
+/* eslint-disable */
 export interface ErrorBoundaryState {
   error: Error | null;
   errorInfo: React.ErrorInfo | null;

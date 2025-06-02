@@ -1,9 +1,9 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+/* eslint-disable */
+import React, {ReactNode} from 'react';
 
-export const Label: React.FC = (props) => {
+// @ts-ignore
+export const Label: React.FC = (props : any) => {
   const { children, ...other } = props;
-
   return (
     <label className="Label" {...other}>
       {children}

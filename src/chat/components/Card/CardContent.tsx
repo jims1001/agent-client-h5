@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import clsx from 'clsx';
 
 export type CardContentProps = {
   className?: string;
+  children: ReactNode;
 };
 
 export const CardContent: React.FC<CardContentProps> = (props) => {

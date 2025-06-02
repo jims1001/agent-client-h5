@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import clsx from 'clsx';
 
 export type CardTitleProps = {
@@ -6,6 +6,7 @@ export type CardTitleProps = {
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   center?: boolean;
+  children: ReactNode;
 };
 
 export const CardTitle: React.FC<CardTitleProps> = (props) => {

@@ -9,8 +9,12 @@ interface StartOptions {
 export function useTitleTyping() {
   const [isTyping, setIsTyping] = useState(false);
   // 间断变化
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
   // 超时
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   const after = ([min, max]: number[], cb: () => void) => {

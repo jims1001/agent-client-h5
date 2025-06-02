@@ -6,7 +6,11 @@ type QuickReplies = QuickReplyItemProps[];
 export default function useQuickReplies(initialState: QuickReplies = []) {
   const [quickReplies, setQuickReplies] = useState(initialState);
   const [visible, setVisible] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const savedRef = useRef<QuickReplies>();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const stashRef = useRef<QuickReplies>();
 
   useEffect(() => {

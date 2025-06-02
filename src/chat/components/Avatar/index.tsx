@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import clsx from 'clsx';
 
 export type AvatarSize = 'sm' | 'md' | 'lg';
@@ -12,6 +12,7 @@ export interface AvatarProps {
   url?: string;
   size?: AvatarSize;
   shape?: AvatarShape;
+  children : ReactNode;
 }
 
 export const Avatar: React.FC<AvatarProps> = (props) => {

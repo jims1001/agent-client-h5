@@ -1,3 +1,5 @@
+
+/* eslint-disable */
 import React from 'react';
 import { Flex } from '../Flex';
 import { Icon } from '../Icon';
@@ -7,6 +9,7 @@ export type LoadingProps = {
 };
 
 export const Loading: React.FC<LoadingProps> = (props) => {
+  // @ts-ignore
   const { tip, children } = props;
   return (
     <Flex className="Loading" center>

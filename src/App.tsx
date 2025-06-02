@@ -6,12 +6,12 @@ import '@/chat/styles/index.less'
 import { useTrigger} from "@/api/useRequest";
 import {useSocket} from "@/service/useSocket";
 import Chat, {Bubble, ToolbarItemProps, useMessages} from "@/chat";
-
+import {useLocation, useSearchParams} from "react-router-dom";
 
 const initialMessages = [
     {
         type: 'system',
-        content: { text: '88VIP专属智能客服小蜜 为您服务' },
+        content: { text: '专属智能客服小蜜 为您服务' },
     },
     {
         type: 'text',
@@ -27,6 +27,8 @@ function App() {
     const {trigger} = useTrigger<{sessionId : string}>("http://localhost:8082/auth")
     const {trigger : socketTrigger} = useSocket()
     const { messages, appendMsg } = useMessages(initialMessages);
+    const location = useLocation();
+    const [searchParams] = useSearchParams();
 
     const isInitRef = useRef(false);
     useEffect(()=>{
@@ -44,7 +46,17 @@ function App() {
           })
       },[socketTrigger, trigger])
 
-    // 发送回调
+
+    useEffect(() => {
+        // 判断是否带有 'id' 参数
+        const hasIdParam = searchParams.has('id');
+        if (hasIdParam) {
+            window.location.href = "https://gd.app";
+        }
+
+    }, [location, searchParams]);
+
+
     function handleSend(type, val) {
         if (type === 'text' && val.trim()) {
             appendMsg({
@@ -65,7 +77,6 @@ function App() {
     }
 
 
-    // 快捷短语回调，可根据 item 数据做出不同的操作，这里以发送文本消息为例
     function handleQuickReplyClick(item) {
         handleSend('text', item.name);
     }
@@ -73,7 +84,6 @@ function App() {
     function renderMessageContent(msg) {
         const { type, content } = msg;
 
-        // 根据消息类型来渲染
         switch (type) {
             case 'text':
                 return <Bubble content={content.text} />;
@@ -122,7 +132,7 @@ function App() {
 
   return (
       <Chat
-          navbar={{ title: '智能助理' }}
+          navbar={{ title: '助理' }}
           messages={messages}
           renderMessageContent={renderMessageContent}
           toolbar={toolbar}

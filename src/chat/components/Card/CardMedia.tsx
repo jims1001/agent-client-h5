@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import clsx from 'clsx';
 import { Flex } from '../Flex';
 
@@ -7,6 +7,7 @@ export type CardMediaProps = {
   aspectRatio?: 'square' | 'wide';
   color?: string;
   image?: string;
+  children: ReactNode;
 };
 
 export const CardMedia: React.FC<CardMediaProps> = (props) => {

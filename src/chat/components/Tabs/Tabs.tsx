@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, {useState, useRef, useEffect, useCallback, ReactNode} from 'react';
 import clsx from 'clsx';
 import smoothScroll from '../../utils/smoothScroll';
 import useNextId from '../../hooks/useNextId';
@@ -8,9 +8,11 @@ type TabItemProps = {
   index: number;
   tabIndex: number;
   onClick: (index: number, event: React.MouseEvent) => void;
+  children: ReactNode;
 };
 
 const TabItem: React.FC<TabItemProps> = (props) => {
+
   const { active, index, children, onClick, ...others } = props;
 
   function handleClick(e: React.MouseEvent) {
@@ -36,9 +38,11 @@ const TabItem: React.FC<TabItemProps> = (props) => {
 type TabsPaneProps = {
   active: boolean;
   id?: string;
+  children: ReactNode;
 };
 
 const TabsPane: React.FC<TabsPaneProps> = (props) => {
+
   const { active, children, ...others } = props;
 
   return (
@@ -57,6 +61,8 @@ export type TabsProps = {
 };
 
 export const Tabs: React.FC<TabsProps> = (props) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const { className, index: oIndex = 0, scrollable, hideNavIfOnlyOne, children, onChange } = props;
   const [pointerStyles, setPointerStyles] = useState({});
   const [index, setIndex] = useState(oIndex || 0);
@@ -73,33 +79,34 @@ export const Tabs: React.FC<TabsProps> = (props) => {
     }
   }
 
-  React.Children.forEach(children, (item: any, idx) => {
-    if (!item) return;
+  React.Children.forEach(children,
+      (item: any, idx) => {
+        if (!item) return;
 
-    const active = index === idx;
-    const id = `${tabPaneId}-${idx}`;
+        const active = index === idx;
+        const id = `${tabPaneId}-${idx}`;
 
-    headers.push(
-      <TabItem
-        active={active}
-        index={idx}
-        key={id}
-        onClick={handleIndexChange}
-        aria-controls={id}
-        tabIndex={active ? -1 : 0}
-      >
-        {item.props.label}
-      </TabItem>,
-    );
+        headers.push(
+            <TabItem
+                active={active}
+                index={idx}
+                key={id}
+                onClick={handleIndexChange}
+                aria-controls={id}
+                tabIndex={active ? -1 : 0}
+            >
+              {item.props.label}
+            </TabItem>,
+        );
 
-    if (item.props.children) {
-      contents.push(
-        <TabsPane active={active} key={id} id={id}>
-          {item.props.children}
-        </TabsPane>,
-      );
-    }
-  });
+        if (item.props.children) {
+          contents.push(
+              <TabsPane active={active} key={id} id={id}>
+                {item.props.children}
+              </TabsPane>,
+          );
+        }
+      });
 
   useEffect(() => {
     setIndex(oIndex);

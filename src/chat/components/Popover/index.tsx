@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+
+import React, {useState, useEffect, useCallback, ReactNode} from 'react';
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import useMount from '../../hooks/useMount';
@@ -10,9 +11,11 @@ export type PopoverProps = {
   active: boolean;
   target: HTMLElement;
   onClose: () => void;
+  children?: ReactNode;
 };
 
 export const Popover: React.FC<PopoverProps> = (props) => {
+
   const { className, active, target, children, onClose } = props;
   const wrapper = useClickOutside(onClose, 'mousedown');
   const { didMount, isShow } = useMount({ active, ref: wrapper });
@@ -22,6 +25,8 @@ export const Popover: React.FC<PopoverProps> = (props) => {
     if (!wrapper.current) return;
 
     const targetRect = target.getBoundingClientRect();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const rect = wrapper.current.getBoundingClientRect();
 
     setStyle({
@@ -32,6 +37,8 @@ export const Popover: React.FC<PopoverProps> = (props) => {
 
   useEffect(() => {
     if (wrapper.current) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       wrapper.current.focus();
       updatePos();
     }

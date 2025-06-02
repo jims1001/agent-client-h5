@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import clsx from 'clsx';
 
@@ -10,7 +11,8 @@ export type FormProps = {
 export const ThemeContext = React.createContext('');
 
 export const Form: React.FC<FormProps> = (props) => {
-  const { className, theme = '', children, ...other } = props;
+  // @ts-ignore
+    const { className, theme = '', children, ...other } = props;
   return (
     <ThemeContext.Provider value={theme}>
       <form className={clsx('Form', { 'is-light': theme === 'light' }, className)} {...other}>

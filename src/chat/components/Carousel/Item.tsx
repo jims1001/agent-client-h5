@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 
 interface CarouselItemProps {
   width: string;
+  children: ReactNode;
 }
 
 export const CarouselItem: React.FC<CarouselItemProps> = (props) => {

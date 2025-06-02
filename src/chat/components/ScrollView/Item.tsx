@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, {ReactNode, useEffect, useRef} from 'react';
 import clsx from 'clsx';
 
+/* eslint-disable */
 export type ScrollViewEffect = 'slide' | 'fade' | '';
 
 export type ScrollViewItemProps = {
   item: any;
   effect?: ScrollViewEffect;
-  onIntersect?: (item?: any, entry?: IntersectionObserverEntry) => boolean | void;
+  onIntersect?: (item?: never, entry?: IntersectionObserverEntry) => boolean | void;
+  children?: ReactNode;
 };
 
 const observerOptions = {

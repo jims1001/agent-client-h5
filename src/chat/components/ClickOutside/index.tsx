@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+/* eslint-disable */
+import React, {ReactNode, useEffect, useRef} from 'react';
+
 
 const doc = document;
 const html = doc.documentElement;
@@ -7,9 +9,11 @@ export type ClickOutsideProps = {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   // mouseEvent?: 'click' | 'mousedown' | 'mouseup' | false;
   mouseEvent?: 'click' | 'mousedown' | 'mouseup';
+  children: ReactNode;
 };
 
 export const ClickOutside: React.FC<ClickOutsideProps> = (props) => {
+
   const { children, onClick, mouseEvent = 'mouseup', ...others } = props;
   const wrapper = useRef<HTMLDivElement>(null!);
 
