@@ -15,12 +15,13 @@ export  function  useSocket(){
 
         window.isReadySocket = true;
 
-
-
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         //  useRequest("http://localhost:8082/auth");
-        const client = new io("im/user?token="+token);
+        const client = new io("http://localhost:9000/im/user?token="+token, {
+            transports: ["websocket"],
+            withCredentials: true,
+        });
         client.on("connect", () => {
             // console.log("Connected:", client.id)
         });
